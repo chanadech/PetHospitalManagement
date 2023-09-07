@@ -50,10 +50,18 @@ class AdminActivity : AppCompatActivity() {
             dialog.show(supportFragmentManager, "Add Details")
         }
 
+        productViewModel.productsLiveData.observe(this) { products ->
+            adapter.setProducts(products)
+        }
+
+        productViewModel.filteredProductsLiveData.observe(this) { filteredProducts ->
+            adapter.setProducts(filteredProducts ?: listOf())
+        }
+
         val searchBar = binding.searchBar
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                adapter.filterProducts(s.toString())
+                productViewModel.filterProducts(s.toString())
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -64,8 +72,6 @@ class AdminActivity : AppCompatActivity() {
         })
 
 
-        productViewModel.productsLiveData.observe(this) { products ->
-            adapter.setProducts(products)
-        }
+
     }
 }

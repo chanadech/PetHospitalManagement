@@ -30,27 +30,6 @@ class ProductAdapter(
         notifyDataSetChanged()
     }
 
-    fun filterProducts(query: String) {
-        val filteredList = originalProducts.filter {
-            try {
-                val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) // Your original date format
-                val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US) // The target date format
-                val date = originalFormat.parse(it.selectedDate)
-                val formattedDate = targetFormat.format(date!!)
-                it.name.contains(query, ignoreCase = true) ||
-                        it.type.contains(query, ignoreCase = true) ||
-                        it.details.contains(query, ignoreCase = true) ||
-                        it.price.toString().contains(query, ignoreCase = true) ||
-                        it.selectedTime.contains(query, ignoreCase = true) ||
-                        formattedDate.contains(query, ignoreCase = true)
-            } catch (e: Exception) {
-                e.printStackTrace()
-                false
-            }
-        }
-        this.products = filteredList
-        notifyDataSetChanged()
-    }
 
     private fun isValidPhoneNumber(phoneNumber: String): Boolean {
         val regex = "^[0-9]{10}$".toRegex()

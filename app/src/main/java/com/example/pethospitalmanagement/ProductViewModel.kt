@@ -16,12 +16,22 @@ import java.util.Locale
 class ProductViewModel(private val repository: ProductRepository) : ViewModel() {
 
     val productsLiveData = MutableLiveData<List<Product>>()
+    val filteredProductsLiveData = MutableLiveData<List<Product>?>()
 
     // Function to insert a product
     fun insert(product: Product) = viewModelScope.launch {
         repository.insert(product)
         fetchAllProducts()  // Refresh the product list
 
+    }
+
+    fun filterProducts(query: String) {
+        val filteredList = productsLiveData.value?.filter {
+            it.name.contains(query, ignoreCase = true) ||
+                    it.type.contains(query, ignoreCase = true)
+            // Add more fields here that you want to filter by
+        }
+        filteredProductsLiveData.postValue(filteredList)
     }
 
     // Function to fetch all products
@@ -86,6 +96,8 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         repository.delete(product)
         fetchAllProducts()  // Refresh the product list
     }
+
+
 
     init {
         fetchAllProducts()  // Initially fetch all products
