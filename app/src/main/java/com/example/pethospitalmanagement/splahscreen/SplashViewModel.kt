@@ -1,4 +1,4 @@
-package com.example.pethospitalmanagement.presentation.splashscreen
+package com.example.pethospitalmanagement.splahscreen
 
 import android.app.Application
 import android.os.Handler

@@ -1,6 +1,6 @@
 package com.example.pethospitalmanagement.data
 
-import com.example.pethospitalmanagement.presentation.ProductViewModel
+import com.example.pethospitalmanagement.admin.ProductViewModel
 import com.example.pethospitalmanagement.data.db.AppDatabase
 import com.example.pethospitalmanagement.data.repository.ProductRepository
 import org.koin.androidx.viewmodel.dsl.viewModel

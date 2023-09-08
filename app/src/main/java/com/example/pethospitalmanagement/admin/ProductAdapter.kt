@@ -1,4 +1,4 @@
-package com.example.pethospitalmanagement.presentation
+package com.example.pethospitalmanagement.admin
 
 import android.app.AlertDialog
 import android.content.Intent

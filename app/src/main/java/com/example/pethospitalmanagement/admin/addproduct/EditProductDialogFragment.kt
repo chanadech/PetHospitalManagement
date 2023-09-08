@@ -7,14 +7,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
-import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.pethospitalmanagement.data.db.Product
 import com.example.pethospitalmanagement.databinding.FragmentDialogBinding
-import com.example.pethospitalmanagement.presentation.ProductViewModel
+import com.example.pethospitalmanagement.admin.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar

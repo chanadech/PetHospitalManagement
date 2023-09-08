@@ -1,4 +1,4 @@
-package com.example.pethospitalmanagement.presentation.splashscreen
+package com.example.pethospitalmanagement.splahscreen
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

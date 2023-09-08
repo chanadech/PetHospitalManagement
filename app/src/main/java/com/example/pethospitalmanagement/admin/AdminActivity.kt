@@ -1,24 +1,21 @@
 package com.example.pethospitalmanagement.presentation.admin
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pethospitalmanagement.R
+import com.example.pethospitalmanagement.admin.CalculateActivity
 import com.example.pethospitalmanagement.databinding.ActivityAdminBinding
 import com.example.pethospitalmanagement.presentation.admin.addproduct.EditProductDialogFragment
-import com.example.pethospitalmanagement.presentation.ProductAdapter
-import com.example.pethospitalmanagement.presentation.ProductViewModel
+import com.example.pethospitalmanagement.admin.ProductAdapter
+import com.example.pethospitalmanagement.admin.ProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AdminActivity : AppCompatActivity() {
@@ -84,6 +81,11 @@ class AdminActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
+        binding.menuButton.setOnClickListener {
+            val intent = Intent(this, CalculateActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
