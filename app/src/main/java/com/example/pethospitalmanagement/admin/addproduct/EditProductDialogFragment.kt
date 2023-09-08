@@ -40,15 +40,20 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             binding.editProductImagePath.setText(it.imagePath)
 
 
-            try {
-                val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-                val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-                val date = originalFormat.parse(it.selectedDate)
-                val formattedDate = targetFormat.format(date!!)
-                binding.tvSelectedDate.text = "Selected Date: $formattedDate"
-            } catch (e: Exception) {
-                e.printStackTrace()
-                binding.tvSelectedDate.text = "Selected Date: ${it.selectedDate}"
+            if (it.selectedDate.isNotEmpty()) {
+                try {
+                    val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                    val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+                    val date = originalFormat.parse(it.selectedDate)
+                    val formattedDate = targetFormat.format(date!!)
+                    binding.tvSelectedDate.text = "Selected Date: $formattedDate"
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    binding.tvSelectedDate.text = "Selected Date: ${it.selectedDate}"
+                }
+            } else {
+                // Set placeholder if no date is selected
+                binding.tvSelectedDate.text = "Selected Date: -"
             }
 
 
@@ -127,7 +132,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
                     details = details,
                     price = price,
                     imagePath = imagePath,
-                    selectedDate = selectedDate,
+                    selectedDate = if (selectedDate != "-") selectedDate else "",
                     selectedTime = selectedTime,
                     telephone = if (telephone.isEmpty()) null else telephone  // ถ้าไม่มีข้อมูล ให้ใช้ค่า null
 

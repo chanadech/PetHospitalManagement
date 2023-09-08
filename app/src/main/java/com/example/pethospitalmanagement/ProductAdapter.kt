@@ -65,14 +65,20 @@ class ProductAdapter(
 
     inner class ProductViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
-            try {
-                val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US) // Your original date format
-                val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US) // The target date format
-                val date = originalFormat.parse(product.selectedDate)
-                val formattedDate = targetFormat.format(date!!)
-                binding.productSelectedDate.text = "Date: ${formattedDate} "// Set the formatted date
-            } catch (e: Exception) {
-                e.printStackTrace()
+            if (product.selectedDate.isNotEmpty()) {
+                try {
+                    val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                    val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+                    val date = originalFormat.parse(product.selectedDate)
+                    val formattedDate = targetFormat.format(date!!)
+                    binding.productSelectedDate.text = "Date: $formattedDate"
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    binding.productSelectedDate.text = "Date: ${product.selectedDate}"
+                }
+            } else {
+                // Set placeholder if no date is selected
+                binding.productSelectedDate.text = "Date: -"
             }
 
 
@@ -80,7 +86,14 @@ class ProductAdapter(
             binding.productType.text = product.type
             binding.productPrice.text = product.price.toString() + " THB"
             binding.productDetail.text = product.details.toString()
-            binding.productSelectedTime.text = "Time: ${product.selectedTime}"  // Add this line to display the time
+
+            val selectedTime = product.selectedTime
+            if (selectedTime.isNullOrEmpty()) {
+                binding.productSelectedTime.text = "Time: -"
+            } else {
+                binding.productSelectedTime.text = "Time: $selectedTime"
+            }
+
 
             val telephone = product.telephone ?: ""
             if (isValidPhoneNumber(telephone)) {

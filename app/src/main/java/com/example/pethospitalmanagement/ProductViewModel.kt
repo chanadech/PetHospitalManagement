@@ -26,13 +26,18 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
     }
 
     fun filterProducts(query: String) {
-        val filteredList = productsLiveData.value?.filter {
-            it.name.contains(query, ignoreCase = true) ||
-                    it.type.contains(query, ignoreCase = true)
-            // Add more fields here that you want to filter by
+        val filteredList = productsLiveData.value?.filter { product ->
+            product.name.contains(query, ignoreCase = true) ||
+                    product.type.contains(query, ignoreCase = true) ||
+                    product.details.contains(query, ignoreCase = true) ||
+                    product.price.toString().contains(query, ignoreCase = true) ||
+                    product.selectedDate.contains(query, ignoreCase = true) ||
+                    product.selectedTime.contains(query, ignoreCase = true) ||
+                    (product.telephone?.contains(query, ignoreCase = true) == true)
         }
         filteredProductsLiveData.postValue(filteredList)
     }
+
 
     // Function to fetch all products
 /*     fun fetchAllProducts() = viewModelScope.launch {
@@ -42,8 +47,7 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         productsLiveData.postValue(products)
     }*/
 
-    // Function to fetch all products
-// Function to fetch all products
+
     fun fetchAllProducts() = viewModelScope.launch {
         val products = repository.getAllProducts()
         val format = SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
