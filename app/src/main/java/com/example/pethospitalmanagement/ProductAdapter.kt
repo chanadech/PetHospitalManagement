@@ -45,8 +45,6 @@ class ProductAdapter(
         )
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -127,7 +125,20 @@ class ProductAdapter(
 
             // Handle edit and delete actions
             binding.btnEdit.setOnClickListener { onEditClick(product) }
-            binding.btnDelete.setOnClickListener { onDeleteClick(product) }
+            binding.btnDelete.setOnClickListener {
+                // สร้าง AlertDialog และกำหนดคุณสมบัติ
+                AlertDialog.Builder(itemView.context)
+                    .setTitle("Do you want to delete") // หัวข้อ
+                    .setMessage("Pet Name: ${product.name}") // รายละเอียด
+                    .setPositiveButton("Yes") { _, _ ->
+                        onDeleteClick(product) // ถ้ากด "Yes", ลบ item
+                    }
+                    .setNegativeButton("No") { dialog, _ ->
+                        dialog.dismiss() // ถ้ากด "No", ปิด dialog
+                    }
+                    .create()
+                    .show()
+            }
             Glide.with(itemView.context)
                 .load(Uri.parse(product.imagePath))
                 .into(binding.productImage)

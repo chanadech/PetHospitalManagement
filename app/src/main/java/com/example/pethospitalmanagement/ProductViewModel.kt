@@ -39,15 +39,6 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
     }
 
 
-    // Function to fetch all products
-/*     fun fetchAllProducts() = viewModelScope.launch {
-        val products = repository.getAllProducts()
-        Log.d("ProductViewModel", "Fetched Products: $products")
-
-        productsLiveData.postValue(products)
-    }*/
-
-
     fun fetchAllProducts() = viewModelScope.launch {
         val products = repository.getAllProducts()
         val format = SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
