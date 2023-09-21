@@ -5,5 +5,12 @@
     <color name="green">#4CAF50</color>
     <color name="purple_primary">#6200EE</color>
     <color name="purple_secondary">#3700B3</color>
+    <color name="colorPrimary">#710193</color>
+    <color name="colorPrimaryDark">#4A0072</color>
+    <color name="colorAccent">#DABFFF</color>
+    <color name="textColorPrimary">#FFF1FF</color>
+    <color name="textColorSecondary">#C89FE8</color>
+    <color name="background">#FFF1FF</color>
+    <color name="dialog_title_color">#5F0059</color>
 
 </resources>

@@ -115,7 +115,7 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
             try {
                 // Validate if the date is in the expected format
                 format.parse(date)
-                RevenueItem(date, products.sumOf { it.price }, false)  // Added false for isMonthLabel
+                RevenueItem(date, products.sumOf { it.price }, false, 0.0)
             } catch (e: ParseException) {
                 // Skip this entry if the date is not valid
                 null
@@ -138,13 +138,14 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         val sortedMonths = groupedByMonth.keys.sortedDescending()  // Sort the months in descending order
         sortedMonths.forEach { month ->
             val items = groupedByMonth[month] ?: emptyList()
-            groupedRevenueList.add(RevenueItem(month, 0.0, true))  // Month label
-            groupedRevenueList.addAll(items)  // Individual days
+            val monthlyTotalIncome = items.sumByDouble { it.totalIncome }  // Calculate the total monthly income
+            groupedRevenueList.add(RevenueItem(month, 0.0, true, monthlyTotalIncome))  // Add month label with total monthly income
+            groupedRevenueList.addAll(items)  // Add individual days
         }
-
 
         return groupedRevenueList
     }
+
 
     private fun convertDateToStandardFormat(dateStr: String): String {
         val inputFormats = listOf(

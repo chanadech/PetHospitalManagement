@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
@@ -97,7 +98,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             startActivityForResult(intent, GALLERY_REQUEST_CODE)
         }
 
-        return AlertDialog.Builder(requireActivity())
+        val alertDialog = AlertDialog.Builder(requireActivity(), R.style.AlertDialogCustom)
             .setView(binding.root)
             .setTitle(if (isEditing) "Edit Details" else "Add Details")
             .setPositiveButton("Save") { _, _ ->
@@ -151,7 +152,16 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
                 productViewModel.fetchAllProducts()
                 dismiss()
             }
+
+            .setNegativeButton("Cancel") { _, _ -> dismiss() }
             .create()
+
+        alertDialog.setOnShowListener {
+            val titleView = alertDialog.findViewById<TextView>(android.R.id.title)
+            titleView?.setTextColor(resources.getColor(R.color.dialog_title_color))
+        }
+
+        return alertDialog
     }
 
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

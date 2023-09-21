@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pethospitalmanagement.R
 import com.example.pethospitalmanagement.data.db.Product
 import com.example.pethospitalmanagement.databinding.ItemProductBinding
 import java.text.SimpleDateFormat
@@ -99,11 +100,11 @@ class ProductAdapter(
                 val spannableString = SpannableString(formattedNumber)
                 spannableString.setSpan(UnderlineSpan(), 0, formattedNumber.length, 0)
                 binding.productTelephone.text = spannableString
-                binding.productTelephone.setTextColor(Color.BLUE)  // Set text color to blue
+//                binding.productTelephone.setTextColor(Color.BLUE)  // Set text color to blue
 
                 binding.productTelephone.setOnClickListener {
                     // Create an AlertDialog to confirm
-                    AlertDialog.Builder(it.context)
+                    AlertDialog.Builder(it.context, R.style.AlertDialogCustom)
                         .setTitle("Do you want to call")
                         .setMessage("Phone number: $formattedNumber")
                         .setPositiveButton("Yes") { _, _ ->
@@ -127,7 +128,7 @@ class ProductAdapter(
             binding.btnEdit.setOnClickListener { onEditClick(product) }
             binding.btnDelete.setOnClickListener {
                 // สร้าง AlertDialog และกำหนดคุณสมบัติ
-                AlertDialog.Builder(itemView.context)
+                AlertDialog.Builder(itemView.context, R.style.AlertDialogCustom)
                     .setTitle("Do you want to delete") // หัวข้อ
                     .setMessage("Pet Name: ${product.name}") // รายละเอียด
                     .setPositiveButton("Yes") { _, _ ->

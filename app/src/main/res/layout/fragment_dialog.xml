@@ -1,7 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,78 +11,117 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Your existing layout elements (EditTexts, Buttons, etc.) -->
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/editProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Name" />
+            android:hint="Pet Name"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37"/>
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/editProductType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Type" />
+            android:hint="Pet Type"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37"/>
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/editProductDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Details" />
+            android:hint="Pet Details"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37"/>
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/editProductPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Total Price"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37"
             android:inputType="numberDecimal" />
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/editTelephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telephone Number"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37"
             android:inputType="numberDecimal" />
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:weightSum="10">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+            <TextView
+                android:id="@+id/tvSelectedDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:weightSum="2">
-
-                <TextView
-                    android:id="@+id/tvSelectedDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Selected Date "
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:layout_weight="1"
-                    android:textColor="#653780"
-                    android:gravity="left" />
-
-
-            </LinearLayout>
-
+                android:hint="Selected Date "
+                android:textColor="#5F0059"
+                android:gravity="left" />
 
             <ImageButton
                 android:id="@+id/btnDatePicker"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:src="@drawable/baseline_calendar_month_24"
-                android:background="#F89F5B"
-                android:layout_weight="2"/>
-
-
+                android:background="@drawable/luxury_button"
+                app:tint="#5F0059" />
         </LinearLayout>
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,73 +129,55 @@
             android:orientation="horizontal"
             android:weightSum="10">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+            <TextView
+                android:id="@+id/tvSelectedtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:weightSum="2">
-
-                <TextView
-                    android:id="@+id/tvSelectedtime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Selected Time "
-                    android:layout_weight="1"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:gravity="left"
-                    android:textColor="#653780"
-                    android:layout_marginTop="10dp"/>
-
-
-            </LinearLayout>
-
+                android:hint="Selected Time "
+                android:textColor="#5F0059"
+                android:gravity="left" />
 
             <ImageButton
                 android:id="@+id/btnTimePicker"
-                android:layout_marginTop="10dp"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:src="@drawable/baseline_access_time_24"
-                android:background="#F89F5B"
-                android:layout_weight="2"/>
-
+                android:background="@drawable/luxury_button"
+                app:tint="#5F0059" />
 
         </LinearLayout>
+
+        <!-- Padding between elements -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="10">
 
             <TextView
                 android:id="@+id/editProductImagePath"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="3"
-                android:ellipsize="end"
+                android:layout_weight="8"
                 android:hint="Selected Image"
-                android:maxLines="1" />
+                android:textColor="#5F0059"
+                android:gravity="left" />
 
             <ImageButton
                 android:id="@+id/imgButton"
-                android:layout_weight="2"
-                android:layout_gravity="center"
                 android:layout_width="80dp"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-                android:background="#F89F5B"
-                android:src="@drawable/baseline_photo_camera_24"/>
+                android:layout_weight="2"
+                android:src="@drawable/baseline_photo_camera_24"
+                android:background="@drawable/luxury_button"
+                app:tint="#5F0059" />
+
         </LinearLayout>
-
-
-
-
-
-
     </LinearLayout>
-
 </ScrollView>

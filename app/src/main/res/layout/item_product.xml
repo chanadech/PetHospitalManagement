@@ -1,123 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:background="#4A0072"
+        android:padding="20dp">
 
         <ImageView
             android:id="@+id/productImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:padding="5dp"
+            android:src="@drawable/my_image"
+            android:layout_gravity="center_vertical" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingStart="16dp">
+            android:paddingStart="25dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
+                android:text="Pet Name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                android:textColor="#D4AF37" />
 
-                <TextView
-                    android:id="@+id/productName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pet Name"
-                    android:textStyle="bold"
-                    android:textColor="#710193"/>
-                <TextView
-                    android:layout_width="2dp"
-                    android:layout_height="wrap_content"
-                    android:text="|"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    />
-                <TextView
-                    android:id="@+id/productDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pet Details"
-                    android:maxLines="1"
-                    android:textColor="#F89F5B"
-                    android:textStyle="bold"
-                    android:ellipsize="end"/>
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/productDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pet Details"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="5dp"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/productType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type" />
+                android:text="Type"
+                android:textSize="14sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="#C89FE8" />
 
             <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$00.00" />
+                android:text="$00.00"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:textColor="#FFF1FF" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/productSelectedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DD/MM/YYYY"
+                    android:textSize="14sp"
                     android:maxLines="1"
-                    android:textColor="#3f1651"/>
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="0dp"/>
+                    android:layout_marginRight="5dp"
+                    android:textColor="#DABFFF" />
+
                 <TextView
                     android:id="@+id/productSelectedTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="00:00"
+                    android:textSize="14sp"
                     android:maxLines="1"
-                    android:textColor="#3f1651"/>
-
-
+                    android:textColor="#DABFFF" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/productTelephone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
-
-
-
+                android:text=""
+                android:textSize="14sp"
+                android:textColor="#C89FE8" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnEdit"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/baseline_edit_24"
-            android:background="?android:attr/selectableItemBackground" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
-        <ImageButton
-            android:id="@+id/btnDelete"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/baseline_delete_24"
-            android:background="?android:attr/selectableItemBackground" />
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_edit_24"
+                android:background="?android:attr/selectableItemBackground"
+                app:tint="#DABFFF" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_delete_24"
+                android:background="?android:attr/selectableItemBackground"
+                app:tint="#DABFFF" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

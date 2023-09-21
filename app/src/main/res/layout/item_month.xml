@@ -4,15 +4,30 @@
     android:layout_height="wrap_content"
     android:background="#8A2BE2"
     android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_margin="5dp"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:elevation="4dp"
+    android:clipToPadding="false"
+    android:clipChildren="false">
 
     <TextView
         android:id="@+id/monthTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFFF00"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
         android:text="Month"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/totalIncomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F2C75B"
+        android:textSize="14sp"
+        android:text="0.00 THB"
+        android:textStyle="bold" />
+
 </LinearLayout>
