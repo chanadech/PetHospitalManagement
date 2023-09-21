@@ -2,6 +2,7 @@ package com.example.pethospitalmanagement.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pethospitalmanagement.R
 import com.example.pethospitalmanagement.databinding.ActivityCalculateBinding
@@ -21,15 +22,13 @@ class CalculateActivity : AppCompatActivity() {
         binding.revenueRecyclerView.adapter = adapter
         binding.revenueRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        // รับข้อมูลรายได้จาก ViewModel และอัพเดท Adapter
-        productViewModel.productsLiveData.observe(this) { _ ->
-            val revenueList = productViewModel.getDailyRevenue()
-            adapter.submitList(revenueList)
-        }
-
-        productViewModel.productsLiveData.observe(this) { _ ->
+        productViewModel.productsLiveData.observe(this) { products ->
+            // Choose either getDailyRevenue or getGroupedRevenue based on what you want to display.
+            Log.d("CalculateActivity", "Observed Products: $products")
             val revenueList = productViewModel.getGroupedRevenue()
             adapter.submitList(revenueList)
+            adapter.notifyDataSetChanged()
+
         }
 
 

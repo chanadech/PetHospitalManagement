@@ -21,12 +21,12 @@ class ProductAdapter(
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     private var products: List<Product> = listOf()
-    private var originalProducts: List<Product> = listOf()
+//    private var originalProducts: List<Product> = listOf()
 
 
     fun setProducts(products: List<Product>) {
         this.products = products
-        this.originalProducts = products
+//        this.originalProducts = products
         notifyDataSetChanged()
     }
 

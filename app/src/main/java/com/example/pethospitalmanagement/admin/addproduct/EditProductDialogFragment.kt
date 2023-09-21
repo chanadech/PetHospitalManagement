@@ -4,12 +4,15 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.pethospitalmanagement.R
 import com.example.pethospitalmanagement.data.db.Product
 import com.example.pethospitalmanagement.databinding.FragmentDialogBinding
 import com.example.pethospitalmanagement.admin.ProductViewModel
@@ -22,6 +25,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
 
     private lateinit var binding: FragmentDialogBinding
     private val productViewModel: ProductViewModel by sharedViewModel()
+    private var selectedImageUri: Uri? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -35,8 +39,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             binding.editProductType.setText(it.type)
             binding.editProductDetails.setText(it.details)
             binding.editProductPrice.setText(it.price.toString())
-            binding.editProductImagePath.setText(it.imagePath)
-
+            selectedImageUri = Uri.parse(it.imagePath)
 
             if (it.selectedDate.isNotEmpty()) {
                 try {
@@ -98,11 +101,12 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             .setView(binding.root)
             .setTitle(if (isEditing) "Edit Details" else "Add Details")
             .setPositiveButton("Save") { _, _ ->
+
                 val name = binding.editProductName.text.toString()
                 val type = binding.editProductType.text.toString()
                 val details = binding.editProductDetails.text.toString()
                 val priceString = binding.editProductPrice.text.toString()
-                val imagePath = binding.editProductImagePath.text.toString()
+                val imagePath = selectedImageUri?.toString() ?: ""
 
                 // Validate inputs
                 if (name.isEmpty() || type.isEmpty() || details.isEmpty() || priceString.isEmpty()) {
@@ -136,6 +140,9 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
 
                 )
 
+                Log.d("EditProductDialogFragment", "New Product: $newProduct")
+
+
                 if (isEditing) {
                     productViewModel.update(newProduct)
                 } else {
@@ -144,17 +151,20 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
                 productViewModel.fetchAllProducts()
                 dismiss()
             }
-
             .create()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val imageUri = data?.data
-            binding.editProductImagePath.setText(imageUri.toString())
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        selectedImageUri = data?.data
+        binding.editProductImagePath.apply {
+            setText("Image selected")
+            setTextColor(resources.getColor(R.color.green))
         }
     }
+}
+
 
     companion object {
         private const val GALLERY_REQUEST_CODE = 101

@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.PetHospitalManagement" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#74006f</item>
+        <item name="colorPrimaryVariant">@color/purple_secondary</item>
+        <item name="colorOnPrimary">@color/white</item> <!-- สีข้อความบนสีพื้นหลัก, ที่นี่ใช้สีขาว -->
+        <!-- คุณสามารถเพิ่มการปรับเปลี่ยนสีอื่น ๆ ตามที่คุณต้องการ -->
     </style>
 
     <style name="Theme.PetHospitalManagement" parent="Base.Theme.PetHospitalManagement" />
+
 </resources>

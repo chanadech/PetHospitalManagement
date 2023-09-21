@@ -7,6 +7,7 @@ import com.example.pethospitalmanagement.data.db.RevenueItem
 import java.util.Date
 import java.util.Locale
 import android.icu.text.SimpleDateFormat
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,15 +22,23 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
 
     // Function to insert a product
     fun insert(product: Product) = viewModelScope.launch {
+        Log.d("ProductViewModel", "Inserting: $product")
+
         repository.insert(product)
         fetchAllProducts()
     }
 
     // Function to update a product
     fun update(product: Product) = viewModelScope.launch {
+        Log.d("ProductViewModel", "Updating with product: $product")
+
         repository.update(product)
         fetchAllProducts()
+
+        // After fetching all products, you can verify the update by checking the latest data in productsLiveData
+        Log.d("ProductViewModel", "Products after update: ${productsLiveData.value}")
     }
+
 
     // Function to delete a product
     fun delete(product: Product) = viewModelScope.launch {
@@ -39,8 +48,12 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
 
     // Function to fetch all products
     fun fetchAllProducts() = viewModelScope.launch {
-        val products = repository.getAllProducts()
-        val format = java.text.SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
+        val products = repository.getAllProducts().map { product ->
+            product.copy(selectedDate = convertDateToStandardFormat(product.selectedDate))
+        }
+        Log.d("ViewModel", "Fetched products: $products")
+
+        val format = java.text.SimpleDateFormat("yyyy-MM-dd h:mm a", Locale.US)
 
         val sortedProducts = products.sortedWith(Comparator { p1, p2 ->
             var dateTime1: Date? = null
@@ -113,6 +126,8 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
 
     fun getGroupedRevenue(): List<RevenueItem> {
         val dailyRevenue = getDailyRevenue()
+        Log.d("ProductViewModel", "Calculated dailyRevenue: $dailyRevenue")
+
         val monthFormat = SimpleDateFormat("yyyy-MM", Locale.US)
         val groupedByMonth = dailyRevenue.groupBy {
             monthFormat.format(SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(it.date)!!)
@@ -120,15 +135,37 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
 
         val groupedRevenueList = mutableListOf<RevenueItem>()
 
-        groupedByMonth.forEach { (month, items) ->
+        val sortedMonths = groupedByMonth.keys.sortedDescending()  // Sort the months in descending order
+        sortedMonths.forEach { month ->
+            val items = groupedByMonth[month] ?: emptyList()
             groupedRevenueList.add(RevenueItem(month, 0.0, true))  // Month label
             groupedRevenueList.addAll(items)  // Individual days
         }
 
+
         return groupedRevenueList
     }
 
+    private fun convertDateToStandardFormat(dateStr: String): String {
+        val inputFormats = listOf(
+            SimpleDateFormat("dd/MM/yyyy", Locale.US),
+            SimpleDateFormat("yyyy-M-d", Locale.US)
+        )
 
+        for (format in inputFormats) {
+            try {
+                val date = format.parse(dateStr)
+                if (date != null) {
+                    return SimpleDateFormat("yyyy-MM-dd", Locale.US).format(date)
+                }
+            } catch (e: ParseException) {
+                // If parsing fails, try the next format
+            }
+        }
+
+        // If no format matches, return the original string
+        return dateStr
+    }
 
     init {
         fetchAllProducts()  // Initially fetch all products

@@ -133,12 +133,11 @@
                 android:id="@+id/editProductImagePath"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="Pet Image"
-                android:layout_marginLeft="5dp"
-                android:maxLines="1"
                 android:layout_marginTop="10dp"
-                android:ellipsize="end"/>
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:hint="Selected Image"
+                android:maxLines="1" />
 
             <ImageButton
                 android:id="@+id/imgButton"
