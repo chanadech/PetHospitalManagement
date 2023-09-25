@@ -59,7 +59,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             }
 
 
-            binding.tvSelectedtime.text = "Selected Time: ${it.selectedTime}"// t the previously selected date
+            binding.tvSelectedtime.text = "Selected Time: ${it.selectedTime}" // t the previously selected date
             binding.editTelephone.setText(it.telephone)
         }
 

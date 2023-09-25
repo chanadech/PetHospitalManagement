@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:text="PLK Pet Hospital Management Application"
+        android:text="PLK Pet Clinic Management Application"
         android:layout_margin="20dp"
         android:textColor="#710193"
         android:textStyle="bold"
