@@ -68,13 +68,27 @@ class RevenueAdapter(
             } else {
                 // This is a daily entry
                 val inputFormat = SimpleDateFormat("yyyy-M-d", Locale.US)
-                val outputFormat = SimpleDateFormat("EEE d-M-yyyy", Locale.US)
+                val outputFormat = SimpleDateFormat("EEE d-M-yyyy", Locale("th", "TH"))
                 val inputDate = inputFormat.parse(revenueItem.date)
-                val outputDate = outputFormat.format(inputDate ?: Date())
+                val outputDate = convertDayToThai(outputFormat.format(inputDate ?: Date()))
                 binding.dateTextView.text = outputDate
                 binding.incomeTextView.text = String.format(Locale.US, "%,.2f THB", revenueItem.totalIncome)
             }
         }
+
+        fun convertDayToThai(day: String): String {
+            return when(day) {
+                "จ." -> "จันทร์"
+                "อ." -> "อังคาร"
+                "พ." -> "พุธ"
+                "พฤ." -> "พฤหัสบดี"
+                "ศ." -> "ศุกร์"
+                "ส." -> "เสาร์"
+                "อา." -> "อาทิตย์"
+                else -> day
+            }
+        }
+
     }
 
     inner class MonthViewHolder(private val binding: ItemMonthBinding) : RecyclerView.ViewHolder(binding.root) {
