@@ -24,4 +24,20 @@
         <item name="android:textColorSecondary">#757575</item> <!-- Secondary text color, if needed -->
     </style>
 
+    <!-- Custom DatePickerDialog Style -->
+    <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimaryDark</item> <!-- Adjust header color -->
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+    <!-- Custom TimePickerDialog Style -->
+    <style name="CustomTimePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimaryDark</item> <!-- Adjust header color -->
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+
+
 </resources>

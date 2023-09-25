@@ -69,10 +69,10 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             val day: Int = cldr.get(Calendar.DAY_OF_MONTH)
             val month: Int = cldr.get(Calendar.MONTH)
             val year: Int = cldr.get(Calendar.YEAR)
-            val picker = DatePickerDialog(requireContext(),
+            val picker = DatePickerDialog(requireContext(), R.style.CustomDatePickerDialog,
                 { _, selectedYear, selectedMonth, selectedDayOfMonth ->
                     val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDayOfMonth"
-                     binding.tvSelectedDate.text = "Selected Date: $selectedDate"
+                    binding.tvSelectedDate.text = "Selected Date: $selectedDate"
                 },
                 year, month, day)
             picker.show()
@@ -82,14 +82,13 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             val hour = c.get(Calendar.HOUR_OF_DAY)
             val minute = c.get(Calendar.MINUTE)
 
-            val timePicker = TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+            val timePicker = TimePickerDialog(context, R.style.CustomDatePickerDialog, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                 val selectedTime = "$hourOfDay:$minute"
                 binding.tvSelectedtime.setText("Selected Time: ${selectedTime}")
             }, hour, minute, true)
 
             timePicker.show()
         }
-
 
         binding.imgButton.setOnClickListener {
             // Open gallery
