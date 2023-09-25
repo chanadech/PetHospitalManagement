@@ -72,7 +72,7 @@ class RevenueAdapter(
                 val inputDate = inputFormat.parse(revenueItem.date)
                 val outputDate = convertDayToThai(outputFormat.format(inputDate ?: Date()))
                 binding.dateTextView.text = outputDate
-                binding.incomeTextView.text = String.format(Locale.US, "%,.2f THB", revenueItem.totalIncome)
+                binding.incomeTextView.text = String.format(Locale.US, "%,.2f บาท", revenueItem.totalIncome)
             }
         }
 

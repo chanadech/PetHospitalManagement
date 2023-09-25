@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textColor="#F2C75B"
         android:textSize="14sp"
-        android:text="0.00 THB"
+        android:text="0.00 บาท"
         android:textStyle="bold" />
 
 </LinearLayout>
