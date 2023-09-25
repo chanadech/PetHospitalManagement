@@ -48,7 +48,7 @@ class AdminActivity : AppCompatActivity() {
         // Initialize FAB for adding new product
         binding.btnAddProduct.setOnClickListener {
             val dialog = EditProductDialogFragment()
-            dialog.show(supportFragmentManager, "Add Details")
+            dialog.show(supportFragmentManager, "เพิ่มข้อมูล")
         }
 
         productViewModel.productsLiveData.observe(this) { products ->

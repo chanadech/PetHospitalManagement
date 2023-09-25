@@ -80,7 +80,7 @@ class RevenueAdapter(
     inner class MonthViewHolder(private val binding: ItemMonthBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(revenueItem: RevenueItem) {
             binding.monthTextView.text = revenueItem.date
-            binding.totalIncomeTextView.text = "Monthly gross income : ${String.format(Locale.US, "%,.2f THB", revenueItem.totalIncomeMonth)}"
+            binding.totalIncomeTextView.text = "รายรับรวมต่อเดือน : ${String.format(Locale.US, "%,.2f บาท", revenueItem.totalIncomeMonth)}"
         }
     }
 

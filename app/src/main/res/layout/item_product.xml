@@ -9,17 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#4A0072"
+        android:orientation="horizontal"
         android:padding="20dp">
 
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
             android:padding="5dp"
-            android:src="@drawable/my_image"
-            android:layout_gravity="center_vertical" />
+            android:src="@drawable/my_image" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -32,41 +32,41 @@
                 android:id="@+id/productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pet Name"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_marginBottom="5dp"
-                android:textColor="#D4AF37" />
+                android:text="Pet Name"
+                android:textColor="#D4AF37"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/productDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pet Details"
-                android:textSize="16sp"
-                android:maxLines="1"
-                android:ellipsize="end"
                 android:layout_marginBottom="5dp"
-                android:textColor="#FFFFFF" />
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Pet Details"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/productType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type"
-                android:textSize="14sp"
                 android:layout_marginBottom="5dp"
-                android:textColor="#C89FE8" />
+                android:text="Type"
+                android:textColor="#C89FE8"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$00.00"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:layout_marginBottom="10dp"
-                android:textColor="#FFF1FF" />
+                android:text="$00.00"
+                android:textColor="#FFF1FF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,56 +77,72 @@
                     android:id="@+id/productSelectedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DD/MM/YYYY"
-                    android:textSize="14sp"
-                    android:maxLines="1"
                     android:layout_marginRight="5dp"
-                    android:textColor="#DABFFF" />
+                    android:maxLines="1"
+                    android:text="DD/MM/YYYY"
+                    android:textColor="#DABFFF"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/productSelectedTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="00:00"
-                    android:textSize="14sp"
                     android:maxLines="1"
-                    android:textColor="#DABFFF" />
+                    android:text="00:00"
+                    android:textColor="#DABFFF"
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/productTelephone"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="14sp"
-                android:textColor="#C89FE8" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/productTelephoneText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="ติดต่อ: "
+                    android:textColor="#C89FE8"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/productTelephone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="#C89FE8"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnEdit"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/baseline_edit_24"
                 android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/baseline_edit_24"
                 app:tint="#DABFFF" />
 
             <Space
                 android:layout_width="1dp"
-                android:layout_height="10dp"/>
+                android:layout_height="10dp" />
 
             <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/baseline_delete_24"
                 android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/baseline_delete_24"
                 app:tint="#DABFFF" />
         </LinearLayout>
     </LinearLayout>

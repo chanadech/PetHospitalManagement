@@ -20,7 +20,7 @@
             android:id="@+id/editProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Name"
+            android:hint="ชื่อสัตว์เลี้ยง"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
             android:textColor="#5F0059"
@@ -35,7 +35,7 @@
             android:id="@+id/editProductType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Type"
+            android:hint="ชนิดสัตว์เลี้ยง"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
             android:textColor="#5F0059"
@@ -50,7 +50,7 @@
             android:id="@+id/editProductDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Details"
+            android:hint="ข้อมูลสัตว์เลี้ยง"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
             android:textColor="#5F0059"
@@ -65,7 +65,7 @@
             android:id="@+id/editProductPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Total Price"
+            android:hint="ราคา"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
             android:textColor="#5F0059"
@@ -81,7 +81,7 @@
             android:id="@+id/editTelephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telephone Number"
+            android:hint="เบอร์โทรติดต่อ"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
             android:textColor="#5F0059"
@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:hint="Selected Date "
+                android:hint="เลือกวันที่ "
                 android:textColor="#5F0059"
                 android:gravity="left" />
 
@@ -134,7 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:hint="Selected Time "
+                android:hint="เลือกเวลา "
                 android:textColor="#5F0059"
                 android:gravity="left" />
 
@@ -165,7 +165,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
-                android:hint="Selected Image"
+                android:hint="เลือกรูปภาพ"
                 android:textColor="#5F0059"
                 android:gravity="left" />
 

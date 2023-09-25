@@ -70,27 +70,27 @@ class ProductAdapter(
                     val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
                     val date = originalFormat.parse(product.selectedDate)
                     val formattedDate = targetFormat.format(date!!)
-                    binding.productSelectedDate.text = "Date: $formattedDate"
+                    binding.productSelectedDate.text = "วันที่: $formattedDate"
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.productSelectedDate.text = "Date: ${product.selectedDate}"
+                    binding.productSelectedDate.text = "วันที่: ${product.selectedDate}"
                 }
             } else {
                 // Set placeholder if no date is selected
-                binding.productSelectedDate.text = "Date: -"
+                binding.productSelectedDate.text = "วันที่: -"
             }
 
 
             binding.productName.text = product.name
             binding.productType.text = product.type
-            binding.productPrice.text = product.price.toString() + " THB"
+            binding.productPrice.text = product.price.toString() + " บาท"
             binding.productDetail.text = product.details.toString()
 
             val selectedTime = product.selectedTime
             if (selectedTime.isNullOrEmpty()) {
-                binding.productSelectedTime.text = "Time: -"
+                binding.productSelectedTime.text = "เวลา: -"
             } else {
-                binding.productSelectedTime.text = "Time: $selectedTime"
+                binding.productSelectedTime.text = "เวลา: $selectedTime"
             }
 
 
@@ -105,21 +105,21 @@ class ProductAdapter(
                 binding.productTelephone.setOnClickListener {
                     // Create an AlertDialog to confirm
                     AlertDialog.Builder(it.context, R.style.AlertDialogCustom)
-                        .setTitle("Do you want to call")
-                        .setMessage("Phone number: $formattedNumber")
-                        .setPositiveButton("Yes") { _, _ ->
+                        .setTitle("ยืนยันการโทร")
+                        .setMessage("เบอร์โทรศัพท์: $formattedNumber")
+                        .setPositiveButton("ยืนยัน") { _, _ ->
                             val dialIntent = Intent(Intent.ACTION_DIAL)
                             dialIntent.data = Uri.parse("tel:$telephone")
                             it.context.startActivity(dialIntent)
                         }
-                        .setNegativeButton("No") { dialog, _ ->
+                        .setNegativeButton("ยกเลิก") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .create()
                         .show()
                 }
             } else {
-                binding.productTelephone.text = "Please fill the mobile phone"
+                binding.productTelephone.text = "โปรดกรอกเบอร์โทรศัพท์"
                 binding.productTelephone.setTextColor(Color.RED)
                 binding.productTelephone.setOnClickListener(null)
             }
@@ -129,12 +129,12 @@ class ProductAdapter(
             binding.btnDelete.setOnClickListener {
                 // สร้าง AlertDialog และกำหนดคุณสมบัติ
                 AlertDialog.Builder(itemView.context, R.style.AlertDialogCustom)
-                    .setTitle("Do you want to delete") // หัวข้อ
-                    .setMessage("Pet Name: ${product.name}") // รายละเอียด
-                    .setPositiveButton("Yes") { _, _ ->
+                    .setTitle("ยืนยันการลบข้อมูล") // หัวข้อ
+                    .setMessage("ชื่อสัตว์เลี้ยง: ${product.name}") // รายละเอียด
+                    .setPositiveButton("ยืนยัน") { _, _ ->
                         onDeleteClick(product) // ถ้ากด "Yes", ลบ item
                     }
-                    .setNegativeButton("No") { dialog, _ ->
+                    .setNegativeButton("ยกเลิก") { dialog, _ ->
                         dialog.dismiss() // ถ้ากด "No", ปิด dialog
                     }
                     .create()

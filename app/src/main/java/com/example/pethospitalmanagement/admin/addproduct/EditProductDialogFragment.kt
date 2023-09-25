@@ -48,18 +48,18 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
                     val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
                     val date = originalFormat.parse(it.selectedDate)
                     val formattedDate = targetFormat.format(date!!)
-                    binding.tvSelectedDate.text = "Selected Date: $formattedDate"
+                    binding.tvSelectedDate.text = "วันที่เลือก: $formattedDate"
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.tvSelectedDate.text = "Selected Date: ${it.selectedDate}"
+                    binding.tvSelectedDate.text = "วันที่เลือก: ${it.selectedDate}"
                 }
             } else {
                 // Set placeholder if no date is selected
-                binding.tvSelectedDate.text = "Selected Date: -"
+                binding.tvSelectedDate.text = "วันที่เลือก: -"
             }
 
 
-            binding.tvSelectedtime.text = "Selected Time: ${it.selectedTime}" // t the previously selected date
+            binding.tvSelectedtime.text = "เวลาที่เลือก: ${it.selectedTime}" // t the previously selected date
             binding.editTelephone.setText(it.telephone)
         }
 
@@ -72,7 +72,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
             val picker = DatePickerDialog(requireContext(), R.style.CustomDatePickerDialog,
                 { _, selectedYear, selectedMonth, selectedDayOfMonth ->
                     val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDayOfMonth"
-                    binding.tvSelectedDate.text = "Selected Date: $selectedDate"
+                    binding.tvSelectedDate.text = "วันที่เลือก: $selectedDate"
                 },
                 year, month, day)
             picker.show()
@@ -84,7 +84,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
 
             val timePicker = TimePickerDialog(context, R.style.CustomDatePickerDialog, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                 val selectedTime = "$hourOfDay:$minute"
-                binding.tvSelectedtime.setText("Selected Time: ${selectedTime}")
+                binding.tvSelectedtime.setText("เวลาที่เลือก: ${selectedTime}")
             }, hour, minute, true)
 
             timePicker.show()
@@ -99,8 +99,8 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
 
         val alertDialog = AlertDialog.Builder(requireActivity(), R.style.AlertDialogCustom)
             .setView(binding.root)
-            .setTitle(if (isEditing) "Edit Details" else "Add Details")
-            .setPositiveButton("Save") { _, _ ->
+            .setTitle(if (isEditing) "แก้ไขข้อมูล" else "เพิ่มข้อมูล")
+            .setPositiveButton("ยืนยัน") { _, _ ->
 
                 val name = binding.editProductName.text.toString()
                 val type = binding.editProductType.text.toString()
@@ -111,19 +111,19 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
                 // Validate inputs
                 if (name.isEmpty() || type.isEmpty() || details.isEmpty() || priceString.isEmpty()) {
                     // Show some validation error
-                    Toast.makeText(context, "All fields are required", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "โปรดกรอกข้อมูลให้ครบ", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
 
                 val price = priceString.toDouble() // Safe to convert now
-                val selectedDate =  binding.tvSelectedDate.text.removePrefix("Selected Date: ").toString()
-                val selectedTime = binding.tvSelectedtime.text.removePrefix("Selected Time: ").toString()
+                val selectedDate =  binding.tvSelectedDate.text.removePrefix("วันที่เลือก: ").toString()
+                val selectedTime = binding.tvSelectedtime.text.removePrefix("เวลาที่เลือก: ").toString()
                 val telephone = binding.editTelephone.text.toString()
 
                 // Validate telephone number format
                 val regex = "^[0-9]{10}$".toRegex()  // The telephone number should have 10 digits
                 if (telephone.isNotEmpty() && !regex.matches(telephone)) {
-                    Toast.makeText(context, "Invalid telephone number. Please enter a valid 10-digit number.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "โปรดกรอกเบอร์โทรที่ถูกต้อง", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
 
@@ -152,7 +152,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
                 dismiss()
             }
 
-            .setNegativeButton("Cancel") { _, _ -> dismiss() }
+            .setNegativeButton("ยกเลิก") { _, _ -> dismiss() }
             .create()
 
         alertDialog.setOnShowListener {
@@ -168,7 +168,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
     if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
         selectedImageUri = data?.data
         binding.editProductImagePath.apply {
-            setText("Image selected")
+            setText("เลือกรูปภาพ")
             setTextColor(resources.getColor(R.color.green))
         }
     }
