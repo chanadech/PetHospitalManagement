@@ -1,28 +1,38 @@
 package com.example.pethospitalmanagement.presentation.admin
 
+import AddProductDialogFragment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pethospitalmanagement.R
-import com.example.pethospitalmanagement.admin.CalculateActivity
+import com.example.pethospitalmanagement.admin.AddedProductAdapter
+import com.example.pethospitalmanagement.admin.NewProductViewModel
+import com.example.pethospitalmanagement.admin.calculate.CalculateActivity
 import com.example.pethospitalmanagement.databinding.ActivityAdminBinding
-import com.example.pethospitalmanagement.presentation.admin.addproduct.EditProductDialogFragment
+import com.example.pethospitalmanagement.admin.editproduct.EditProductDialogFragment
 import com.example.pethospitalmanagement.admin.ProductAdapter
 import com.example.pethospitalmanagement.admin.ProductViewModel
+import com.example.pethospitalmanagement.databinding.FragmentAddProductDialogBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.recyclerview.widget.ConcatAdapter
+
 
 class AdminActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdminBinding
     private val productViewModel: ProductViewModel by viewModel()
+    private val newProductViewModel: NewProductViewModel by viewModel()  // New Line
+
     private lateinit var adapter: ProductAdapter
+    private lateinit var addedProductAdapter: AddedProductAdapter
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +58,7 @@ class AdminActivity : AppCompatActivity() {
         // Initialize FAB for adding new product
         binding.btnAddProduct.setOnClickListener {
             val dialog = EditProductDialogFragment()
-            dialog.show(supportFragmentManager, "เพิ่มข้อมูล")
+            dialog.show(supportFragmentManager, "เพิ่มข้อมูลสัตว์เลี้ยง")
         }
 
         productViewModel.productsLiveData.observe(this) { products ->
@@ -87,7 +97,28 @@ class AdminActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnAddProductType.setOnClickListener {
+            showAddProductTypeDialog()
+        }
+
+
+        addedProductAdapter = AddedProductAdapter()  // New Line
+        val concatAdapter = ConcatAdapter(adapter, addedProductAdapter)  // New Line
+        binding.recyclerView.adapter = concatAdapter
+
+        newProductViewModel.allNewProducts.observe(this) { newProducts ->
+            Log.d("AdminActivity", "New Products: $newProducts")  // Add this line
+
+            addedProductAdapter.setData(newProducts)
+        }
+
+    }
+
+    private fun showAddProductTypeDialog() {
+        val addProductDialogFragment = AddProductDialogFragment()
+        addProductDialogFragment.show(supportFragmentManager, "AddProductDialogFragment")
 
 
     }
+
 }

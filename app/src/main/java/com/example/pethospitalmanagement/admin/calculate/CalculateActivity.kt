@@ -1,10 +1,10 @@
-package com.example.pethospitalmanagement.admin
+package com.example.pethospitalmanagement.admin.calculate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pethospitalmanagement.R
+import com.example.pethospitalmanagement.admin.ProductViewModel
 import com.example.pethospitalmanagement.databinding.ActivityCalculateBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

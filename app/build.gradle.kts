@@ -62,7 +62,10 @@ dependencies {
 // Coroutine extensions for ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("androidx.recyclerview:recyclerview:1.2.0")// Version may vary
+
     implementation ("com.google.android.material:material:1.4.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2") // หรือเวอร์ชันล่าสุด
 
 
 }

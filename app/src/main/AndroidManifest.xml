@@ -20,7 +20,7 @@
         android:theme="@style/Theme.PetHospitalManagement"
         tools:targetApi="31">
         <activity
-            android:name=".admin.CalculateActivity"
+            android:name=".admin.calculate.CalculateActivity"
             android:exported="false" />
         <activity
             android:name=".splahscreen.SplashActivity"

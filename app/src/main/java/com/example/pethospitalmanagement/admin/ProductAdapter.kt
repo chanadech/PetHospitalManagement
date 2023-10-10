@@ -15,6 +15,7 @@ import com.example.pethospitalmanagement.data.db.Product
 import com.example.pethospitalmanagement.databinding.ItemProductBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.text.NumberFormat
 
 class ProductAdapter(
     private val onEditClick: (Product) -> Unit,
@@ -83,7 +84,9 @@ class ProductAdapter(
 
             binding.productName.text = product.name
             binding.productType.text = product.type
-            binding.productPrice.text = product.price.toString() + " บาท"
+            val numberFormat = NumberFormat.getInstance()  // <-- Added line
+            val formattedPrice = numberFormat.format(product.price)
+            binding.productPrice.text = "$formattedPrice บาท"  // <-- Modified line
             binding.productDetail.text = product.details.toString()
 
             val selectedTime = product.selectedTime

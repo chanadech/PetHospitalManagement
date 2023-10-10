@@ -1,4 +1,4 @@
-package com.example.pethospitalmanagement.presentation.admin.addproduct
+package com.example.pethospitalmanagement.admin.editproduct
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -99,7 +99,7 @@ class EditProductDialogFragment(private val product: Product? = null) : DialogFr
 
         val alertDialog = AlertDialog.Builder(requireActivity(), R.style.AlertDialogCustom)
             .setView(binding.root)
-            .setTitle(if (isEditing) "แก้ไขข้อมูล" else "เพิ่มข้อมูล")
+            .setTitle(if (isEditing) "แก้ไขข้อมูล" else "เพิ่มข้อมูลสัตว์เลี้ยง")
             .setPositiveButton("ยืนยัน") { _, _ ->
 
                 val name = binding.editProductName.text.toString()

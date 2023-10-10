@@ -1,0 +1,162 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Name of the Product -->
+        <EditText
+            android:id="@+id/editProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="ชื่อสินค้า"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37" />
+
+        <!-- Padding -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <!-- Price of the Product -->
+        <EditText
+            android:id="@+id/editProductPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="ราคา"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textColor="#5F0059"
+            android:textColorHint="#D4AF37" />
+
+        <!-- Padding -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <!-- Quantity of the Product -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/luxury_button2"
+                android:text="-"
+                android:textColor="#D4AF37" />
+
+            <EditText
+                android:id="@+id/editProductQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center"
+                android:hint="จำนวน"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="#5F0059"
+                android:textColorHint="#D4AF37" />
+
+            <Button
+                android:id="@+id/btnPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/luxury_button2"
+                android:text="+"
+                android:textColor="#D4AF37"
+
+                />
+        </LinearLayout>
+
+        <!-- Padding -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editProductDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_background"
+                android:hint="วันที่"
+                android:padding="10dp"
+                android:textColor="#5F0059"
+                android:textColorHint="#D4AF37" />
+
+            <ImageButton
+                android:id="@+id/btnTime"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/luxury_button"
+                android:src="@drawable/baseline_calendar_month_24" />
+        </LinearLayout>
+
+        <!-- Padding -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <!-- Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editProductTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_background"
+                android:hint="เวลา"
+                android:padding="10dp"
+                android:textColor="#5F0059"
+                android:textColorHint="#D4AF37" />
+
+            <ImageButton
+                android:id="@+id/btnDate"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/luxury_button"
+                android:src="@drawable/baseline_access_time_24" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnbtnAddProductAddProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/luxury_button"
+            android:elevation="4dp"
+            android:padding="10dp"
+            android:text="บันทึก"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>
