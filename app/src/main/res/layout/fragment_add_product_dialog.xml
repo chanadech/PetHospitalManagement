@@ -20,6 +20,7 @@
             android:hint="ชื่อสินค้า"
             android:padding="10dp"
             android:textColor="#5F0059"
+            android:ellipsize="end"
             android:textColorHint="#D4AF37" />
 
         <!-- Padding -->
@@ -147,7 +148,7 @@
 
 
         <Button
-            android:id="@+id/btnbtnAddProductAddProduct"
+            android:id="@+id/btnAddProductAddProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

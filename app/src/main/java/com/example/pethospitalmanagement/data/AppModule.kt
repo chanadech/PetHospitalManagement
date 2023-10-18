@@ -15,5 +15,6 @@ val appModule = module {
     viewModel { ProductViewModel(get()) }
     single { get<AppDatabase>().newProductDao() }
     single { NewProductRepository(get()) }  // Make sure this line is added
-    viewModel { NewProductViewModel(get(), get()) }  // Make sure this line is added
+    viewModel { NewProductViewModel(get(), get()) }  // Make
+// sure this line is added
 }

@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pethospitalmanagement.data.db.NewProduct
 import kotlinx.coroutines.launch
 import java.text.ParseException
 import java.util.*
@@ -166,6 +167,30 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
 
         // If no format matches, return the original string
         return dateStr
+    }
+
+    // ใน ProductViewModel
+    fun getCombinedDailyRevenue(newProducts: List<NewProduct>): List<RevenueItem> {
+        val productRevenueItems = getDailyRevenue()
+        // Create a list of RevenueItems for new products
+        val newProductRevenueItems = newProducts.groupBy { it.date }
+            .map { (date, products) ->
+                RevenueItem(date, products.sumOf { it.price * it.quantity }, false, 0.0)
+            }
+
+        // Combine data by date
+        val combinedMap = mutableMapOf<String, Double>()
+        for (item in productRevenueItems) {
+            combinedMap[item.date] = item.totalIncome
+        }
+        for (item in newProductRevenueItems) {
+            combinedMap[item.date] = combinedMap.getOrDefault(item.date, 0.0) + item.totalIncome
+        }
+
+        // Convert data in the map to List<RevenueItem>
+        return combinedMap.map { (date, totalIncome) ->
+            RevenueItem(date, totalIncome, false, 0.0)
+        }.sortedByDescending { it.date }
     }
 
     init {

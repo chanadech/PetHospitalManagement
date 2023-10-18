@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -20,7 +21,6 @@ import com.example.pethospitalmanagement.databinding.ActivityAdminBinding
 import com.example.pethospitalmanagement.admin.editproduct.EditProductDialogFragment
 import com.example.pethospitalmanagement.admin.ProductAdapter
 import com.example.pethospitalmanagement.admin.ProductViewModel
-import com.example.pethospitalmanagement.databinding.FragmentAddProductDialogBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.recyclerview.widget.ConcatAdapter
 
@@ -60,6 +60,31 @@ class AdminActivity : AppCompatActivity() {
             val dialog = EditProductDialogFragment()
             dialog.show(supportFragmentManager, "เพิ่มข้อมูลสัตว์เลี้ยง")
         }
+        addedProductAdapter = AddedProductAdapter(
+            onEditClick = { newProduct ->
+                val dialog = AddProductDialogFragment()
+                dialog.show(supportFragmentManager, "แก้ไขสินค้า")
+            },
+            onDeleteClick = { newProduct ->
+                // Show confirmation dialog and then delete
+                AlertDialog.Builder(this, R.style.AlertDialogCustom)
+                    .setTitle("ยืนยันการลบข้อมูล")
+                    .setMessage("ชื่อสินค้า: ${newProduct.name}")
+                    .setPositiveButton("ยืนยัน") { _, _ ->
+                        newProductViewModel.delete(newProduct)
+                    }
+                    .setNegativeButton("ยกเลิก", null)
+                    .show()
+            }
+        )
+
+        // New Line
+        val concatAdapter = ConcatAdapter(adapter, addedProductAdapter)  // New Line
+        binding.recyclerView.adapter = concatAdapter
+
+        newProductViewModel.allNewProducts.observe(this) { newProducts ->
+            addedProductAdapter.setData(newProducts)
+        }
 
         productViewModel.productsLiveData.observe(this) { products ->
             adapter.setProducts(products)
@@ -68,6 +93,11 @@ class AdminActivity : AppCompatActivity() {
         productViewModel.filteredProductsLiveData.observe(this) { filteredProducts ->
             adapter.setProducts(filteredProducts ?: listOf())
         }
+
+        newProductViewModel.filteredNewProductsLiveData.observe(this) { filteredNewProducts ->
+            addedProductAdapter.setData(filteredNewProducts ?: listOf())
+        }
+
         val clearDrawable = ContextCompat.getDrawable(this, R.drawable.clear_icon)
         binding.searchBar.setCompoundDrawablesWithIntrinsicBounds(null, null, clearDrawable, null)
 
@@ -85,7 +115,10 @@ class AdminActivity : AppCompatActivity() {
 
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+
                 productViewModel.filterProducts(s.toString())
+                newProductViewModel.filterNewProducts(s.toString())  // New Line
+
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -102,15 +135,11 @@ class AdminActivity : AppCompatActivity() {
         }
 
 
-        addedProductAdapter = AddedProductAdapter()  // New Line
-        val concatAdapter = ConcatAdapter(adapter, addedProductAdapter)  // New Line
-        binding.recyclerView.adapter = concatAdapter
 
-        newProductViewModel.allNewProducts.observe(this) { newProducts ->
-            Log.d("AdminActivity", "New Products: $newProducts")  // Add this line
 
-            addedProductAdapter.setData(newProducts)
-        }
+
+
+
 
     }
 
